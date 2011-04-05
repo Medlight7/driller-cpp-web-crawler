@@ -1,14 +1,21 @@
-#summary One-sentence summary of this page.
+#summary how to build drill in visual studio express 2008.
 #labels Phase-Implementation,Featured,Phase-Deploy
 
 = Introduction =
 
-Add your content here.
+in the zip file you will find full visual studio express 2008 32 bit<br> project that contains 
+the open source libraries compiled in debug mode.<br>
+all you have to do is configure the application in source <br>
+compile and watch the results.<br>
 
 
 = Details =
-
+to compile do this simple steps:<br>
+-- on visual studio express 2008 32 bit <br>
 Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Load the drill.sln into the IDE , its configured to compile in debug mode.
+  * Before building configure the application please refer to the how_to_configure_drill.txt guild
+  * Hit f5 to build and run the application
+
+
+*note:* there are many warning's don't mind them now.
