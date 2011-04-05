@@ -1,14 +1,22 @@
-#summary One-sentence summary of this page.
+#summary How to configure drill web spider
 #labels Featured,Phase-Implementation,Phase-Deploy
 
 = Introduction =
 
-Add your content here.
+How to configure Drill (the web spider)<br> 
+*Note:* this is the first draft of the configuration ,<br>
+I understand some logic will be hard to grasp at first , I will try to explain in simple words as I can<br>
+The configuration is done in code this means hard coded. <br>
 
 
 = Details =
 
 Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  * Define the url you like to drill down with the spider, Find the *drill.cpp* file & look for linkVec.push_back(`"http://www.xxxx.com/somthing/"`)`;` Here instead of the string enter the site url.
+  * Find the file *Config.cpp* , there you will find different data structures that needs to be filled. 
+    # _infoHolder.linksBlackList.insert (…)_ , are the strings that shouldn't be in the links the spider follow.for example if you define infoHolder.linksBlackList.insert ("#comments")  all links that contain this string will be ignored
+    #  _infoHolder.linksMastHaveList.insert(…)_ are the strings that must be in in the links the spider follow .this is to insure the spider stays in our target web site scope.for example: infoHolder.linksMastHaveList.insert(`"http://www.xxxx.com/somthing"`)`;`
+    # infoHolder.BaseUrl again to insure the spider stays in our target web site scope for example : _infoHolder.BaseUrl = `"http://www.xxxx.com/"`_
+    # _infoHolder.iThreadsToInvoke = 1_ ; how much threads to invoke  _infoHolder.iThreadPoolSize = 1_ ; thread pool size please keep it single threads for now the multi thread option still very experimental
+    # Scraplet are regexp units each unit hold rule . the rule is regexp that capture/scrap string from the current web page the drill spider visit _Scraplet.regExp_ : is the regexp string  _Scraplet.IsUnique_ : looks only for one pattern result of the regexp if true,if false meny patterns can be capture in the same page
+ * Find the file *ProcessingUnit.cpp* search for the   _HandlePageScanResults_  function here you will configure the xml output file .basclly you poll the keys you defined in the Config.cpp Hash map and Concat strings to build the xml look at the code it very straightforward.  
